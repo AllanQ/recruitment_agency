@@ -1,0 +1,9 @@
+= simple_form_for @vacancy do |f|
+  = f.input :title, label: 'Название'
+  = f.input :salary, label: 'Зарплата'
+  = f.input :contacts, label: 'Контактная информация'
+  = f.input :validity, label: 'Срок действия, дней'
+  = f.submit 'Создать вакансию'
+-#= simple_form_for @skill, url: skills_path do |s|
+-#  = s.input :name, label: 'Умения'
+-#  = s.submit 'Добавить умение'

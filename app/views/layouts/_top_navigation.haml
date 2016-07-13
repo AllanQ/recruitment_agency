@@ -1,0 +1,14 @@
+%nav.navbar
+  .container
+    .navbar-header
+    #navbar.navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li.active
+          = link_to 'Vacancies', vacancies_path
+        %li
+          = link_to 'Employees', employees_path
+      %ul.nav.navbar-nav.navbar-right
+        %li.active
+          = link_to 'Create Vacancy', new_vacancy_path
+        %li
+          = link_to 'Create Employee', new_employee_path
