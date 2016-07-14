@@ -6,6 +6,7 @@ class VacanciesController < ApplicationController
 
   def new
     @vacancy = Vacancy.new
+    @skill = Skill.new
   end
 
   def create

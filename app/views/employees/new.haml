@@ -1,9 +1,26 @@
-= simple_form_for @employee do |f|
-  = f.input :name, label: 'ФИО'
-  = f.input :salary, label: 'Желаемая зарплата'
-  = f.input :contact, label: 'Номер телефона или адрес эл.почты'
-  = f.input :search, label: 'Ищу работу'
-  = f.submit 'Создать работника'
--#= simple_form_for @skill, url: skills_path do |s|
--#  = s.input :name, label: 'Умения'
--#  = s.submit 'Добавить умение'
+%h2.text-center Создание работника
+%br
+%span.col-md-4.col-md-offset-4
+  = simple_form_for @employee do |f|
+    = f.input :name, label: 'ФИО'
+
+    = label_tag 'skill', 'Умение'
+    .form-group.form-inline
+      = text_field_tag 'skill', nil, class: 'form-control'
+      = button_tag 'Добавить', type: 'button', class: 'btn btn-info'
+      %span.skills-list
+        = button_tag "Ruby", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
+        = button_tag "Ruby on rails", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
+        = button_tag "Html", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
+        = button_tag "Ajax", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
+        = button_tag "Angular2", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
+        = button_tag "Postgresql", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
+        = button_tag "Css", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
+        = button_tag "Haml", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
+        = button_tag "Slim", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
+    = f.hidden_field :skills
+
+    = f.input :salary, label: 'Желаемая зарплата'
+    = f.input :contact, label: 'Номер телефона или адрес эл.почты'
+    = f.input :search, label: 'Ищу работу'
+    = f.submit 'Создать работника', class: 'btn btn-success'

@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 feature 'employees page' do
-  scenario 'employees header' do
+  scenario 'header' do
     visit('/')
-    click_link('Employees')
+    click_link('Работники')
 
-    expect(page).to have_content('Employees')
+    expect(page).to have_content('Работники')
   end
 end

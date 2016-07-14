@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20160713143457) do
   create_table "employees_skills", id: false, force: :cascade do |t|
     t.integer "employee_id", null: false
     t.integer "skill_id",    null: false
+    t.index ["employee_id", "skill_id"], name: "index_employees_skills_on_employee_id_and_skill_id", using: :btree
+    t.index ["skill_id", "employee_id"], name: "index_employees_skills_on_skill_id_and_employee_id", using: :btree
   end
 
   create_table "skills", force: :cascade do |t|
@@ -38,6 +40,8 @@ ActiveRecord::Schema.define(version: 20160713143457) do
   create_table "skills_vacancies", id: false, force: :cascade do |t|
     t.integer "vacancy_id", null: false
     t.integer "skill_id",   null: false
+    t.index ["skill_id", "vacancy_id"], name: "index_skills_vacancies_on_skill_id_and_vacancy_id", using: :btree
+    t.index ["vacancy_id", "skill_id"], name: "index_skills_vacancies_on_vacancy_id_and_skill_id", using: :btree
   end
 
   create_table "vacancies", force: :cascade do |t|
@@ -45,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160713143457) do
     t.date     "date"
     t.integer  "validity"
     t.integer  "salary"
-    t.string   "contacts"
+    t.text     "contacts"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

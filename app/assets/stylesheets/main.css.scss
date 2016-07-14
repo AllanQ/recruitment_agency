@@ -1,3 +1,11 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+
+//New Vacancy & New Employee
+.glyphicon-remove-right:after {
+  font-family: 'Glyphicons Halflings';
+  content: "\e014";
+}

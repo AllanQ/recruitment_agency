@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 feature 'create new employee' do
-  scenario 'create new employee with valid data' do
+  scenario 'with valid data' do
     visit('/')
-    click_link('Create Employee')
+    click_link('Создать работника')
 
     fill_in('ФИО', with: 'Александр Сергеевич Пушкин')
     # fill_in('Skills', with: 'Ruby, Ruby on Rails')
