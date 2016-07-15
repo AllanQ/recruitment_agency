@@ -6,19 +6,14 @@
 
     = label_tag 'skill', 'Умение'
     .form-group.form-inline
-      = text_field_tag 'skill', nil, class: 'form-control'
-      = button_tag 'Добавить', type: 'button', class: 'btn btn-info'
-      %span.skills-list
-        = button_tag "Ruby", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
-        = button_tag "Ruby on rails", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
-        = button_tag "Html", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
-        = button_tag "Ajax", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
-        = button_tag "Angular2", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
-        = button_tag "Postgresql", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
-        = button_tag "Css", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
-        = button_tag "Haml", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
-        = button_tag "Slim", type: 'button', class: 'btn btn-primary glyphicon glyphicon-remove-right'
-    = f.hidden_field :skills
+      = text_field_tag 'skill', nil, class: 'form-control', id: 'skill'
+      = button_tag 'Добавить', type: 'button', class: 'btn btn-info',
+        id: 'add-skill'
+      %br
+      %span#skills-list
+        = button_tag 'Value', type: 'button', id: 'sample',
+          class: 'btn btn-primary glyphicon glyphicon-remove-right hidden'
+    = f.hidden_field :skills, id: 'skills', value: ''
 
     = f.input :salary, label: 'Желаемая зарплата'
     = f.input :contact, label: 'Номер телефона или адрес эл.почты'
