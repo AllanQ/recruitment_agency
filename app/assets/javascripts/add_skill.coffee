@@ -2,7 +2,7 @@ click_button_add_skill = ->
   $('#add-skill').on('click', (e)->
     e.preventDefault()
     $('#skill').val().trim().split(',').forEach(add_skill)
-    $('#skill').val('')
+    $('#skill').val('').focus()
   )
 
 add_skill =(item) ->

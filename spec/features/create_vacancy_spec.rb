@@ -1,13 +1,27 @@
 require 'rails_helper'
 
 feature 'create new vacancy' do
-  scenario 'add skills' do
+  xscenario 'add skills' do
     visit('/')
     click_link('Создать вакансию')
     fill_in('Умение', with: 'PostgreSQL')
     click_button('Добавить')
     expect(page).to have_button('Postgresql')
   end
+
+  xscenario 'add skills' do
+    visit('/')
+    click_link('Создать вакансию')
+    fill_in('Умение', with: 'HTML')
+    click_button('Добавить')
+    fill_in('Умение', with: 'PostgreSQL')
+    click_button('Добавить')
+    fill_in('Умение', with: 'ajax')
+    click_button('Добавить')
+    click_button('Postgresql')
+    expect(page).not_to have_button('Postgresql')
+  end
+
 
   scenario 'with valid data' do
     visit('/')

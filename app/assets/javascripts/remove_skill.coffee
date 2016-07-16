@@ -3,6 +3,7 @@ click_remove_skill_button = ->
     e.preventDefault()
     remove_skill_from_skills_hidden_field(@.id)
     $(@).parent('span').remove()
+    $('#skill').focus()
   )
 
 remove_skill_from_skills_hidden_field =(skill) ->

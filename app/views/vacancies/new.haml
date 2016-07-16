@@ -1,12 +1,13 @@
 %h2.text-center Создание вакансии
 %br
-%span.col-md-4.col-md-offset-4
+%span.col-md-4.col-md-offset-4#inputform
   = simple_form_for @vacancy do |f|
     = f.input :title, label: 'Название'
 
     = label_tag 'skill', 'Умение'
     .form-group.form-inline
-      = text_field_tag 'skill', nil, class: 'form-control', id: 'skill'
+      = text_field_tag 'skill', nil, class: 'form-control', id: 'skill',
+        dataindex: '2'
       = button_tag 'Добавить', type: 'button', class: 'btn btn-info',
         id: 'add-skill'
       %br
@@ -15,7 +16,7 @@
           class: 'btn btn-primary glyphicon glyphicon-remove-right hidden'
     = f.hidden_field :skills, id: 'skills', value: ''
 
-    = f.input :salary, label: 'Зарплата'
-    = f.input :contacts, label: 'Контактная информация'
-    = f.input :validity, label: 'Срок действия, дней'
+    = f.input :salary, label: 'Зарплата', dataindex: '3'
+    = f.input :contacts, label: 'Контактная информация', dataindex: '4'
+    = f.input :validity, label: 'Срок действия, дней', dataindex: '5'
     = f.submit 'Создать вакансию', class: 'btn btn-success'
