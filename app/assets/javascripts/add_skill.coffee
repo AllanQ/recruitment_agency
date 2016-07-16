@@ -1,22 +1,35 @@
-split_and_add = ->
+click_add_skill_button = ->
   $('#add-skill').on('click', ->
-    console.log('batton add click')
-    skill = $('#skill').val().trim().toLocaleLowerCase()
-    skill.split(',').forEach(add_skill)
+    $('#skill').val().trim().split(',').forEach(add_skill)
+    $('#skill').val('')
   )
 
 add_skill =(item) ->
-  skill = item.trim()
-  skill = skill.charAt(0).toUpperCase() + skill.slice(1)
-  console.log(skill)
+  if item != ''
+    skill = capitalize(item)
+    unless check_presence(skill)
+      add_skill_to_hidden_field_skills(skill)
+      add_button_with_skill_name(skill)
+
+capitalize =(str) ->
+  str_low_case = str.trim().toLocaleLowerCase()
+  str_low_case.charAt(0).toUpperCase() + str_low_case.slice(1)
+
+check_presence =(skill) ->
+  skills = $('#skills').val() + ', '
+  if skills.search(', ' + skill + ', ') == -1
+    false
+  else
+    true
+
+add_skill_to_hidden_field_skills =(skill) ->
   skills = $('#skills').val()
   $('#skills').val(skills + ', ' + skill)
-  skills = $('#skills').val()
-  console.log(skills)
-  $('#sample').clone().removeAttr('id').removeClass('hidden')
-    .text(skill).appendTo('#skills-list')
-  $('#skill').val('')
 
+add_button_with_skill_name =(skill_name) ->
+  $('#sample').clone().removeAttr('id').removeClass('hidden').addClass('removable').attr('id', skill_name)
+  .text(skill_name).appendTo('#skills-list')
+  
 $ (->
-  split_and_add()
+  click_add_skill_button()
 )
