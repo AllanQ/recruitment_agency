@@ -1,5 +1,6 @@
-click_add_skill_button = ->
-  $('#add-skill').on('click', ->
+click_button_add_skill = ->
+  $('#add-skill').on('click', (e)->
+    e.preventDefault()
     $('#skill').val().trim().split(',').forEach(add_skill)
     $('#skill').val('')
   )
@@ -27,9 +28,10 @@ add_skill_to_hidden_field_skills =(skill) ->
   $('#skills').val(skills + ', ' + skill)
 
 add_button_with_skill_name =(skill_name) ->
-  $('#sample').clone().removeAttr('id').removeClass('hidden').addClass('removable').attr('id', skill_name)
-  .text(skill_name).appendTo('#skills-list')
+  $('#skills-list').append('<span></span>')
+  $('#sample').clone().removeClass('hidden').addClass('removable').attr('id', skill_name)
+  .text(skill_name).appendTo($('#skills-list').children().last())
   
 $ (->
-  click_add_skill_button()
+  click_button_add_skill()
 )
