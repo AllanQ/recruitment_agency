@@ -1,21 +1,30 @@
 %h2.text-center Создание работника
 %br
-%span.col-md-4.col-md-offset-4
-  = simple_form_for @employee do |f|
-    = f.input :name, label: 'ФИО'
+%span.col-md-4.col-md-offset-4#inputform
+  = form_for @employee do |f|
+    .form-group
+      = f.label :name, 'ФИО'
+      = f.text_field :name, class: 'form-control', dataindex: '1'
 
-    = label_tag 'skill', 'Умение'
     .form-group.form-inline
-      = text_field_tag 'skill', nil, class: 'form-control', id: 'skill'
+      = label_tag 'skill', 'Умение'
+      = text_field_tag 'skill', nil, class: 'form-control', id: 'skill',
+        dataindex: '2'
       = button_tag 'Добавить', type: 'button', class: 'btn btn-info',
         id: 'add-skill'
       %br
       %span#skills-list
-        = button_tag 'Value', type: 'button', id: 'sample',
+        = button_tag 'Sample', type: 'button', id: 'sample',
           class: 'btn btn-primary glyphicon glyphicon-remove-right hidden'
     = f.hidden_field :skills, id: 'skills', value: ''
 
-    = f.input :salary, label: 'Желаемая зарплата'
-    = f.input :contact, label: 'Номер телефона или адрес эл.почты'
-    = f.input :search, label: 'Ищу работу'
+    .form-group
+      = f.label :salary, 'Желаемая зарплата'
+      = f.number_field :salary, class: 'form-control', dataindex: '3'
+    .form-group
+      = f.label :contact, 'Номер телефона или адрес эл.почты'
+      = f.text_field :contact, class: 'form-control', dataindex: '4'
+    .checkbox
+      = f.check_box :search, dataindex: '5'
+      = f.label :search, 'Ищу работу'
     = f.submit 'Создать работника', class: 'btn btn-success'
