@@ -1,6 +1,5 @@
 click_button_add_skill = ->
-  $('#add-skill').on('click', (e)->
-    e.preventDefault()
+  $('#add-skill').on('click', ->
     $('#skill').val().trim().split(',').forEach(add_skill)
     $('#skill').val('').focus()
   )
@@ -9,7 +8,7 @@ add_skill =(item) ->
   if item != ''
     skill = capitalize(item)
     unless check_presence(skill)
-      add_skill_to_hidden_field_skills(skill)
+      define_skill_id(skill)
       add_button_with_skill_name(skill)
 
 capitalize =(str) ->
@@ -23,14 +22,25 @@ check_presence =(skill) ->
   else
     true
 
-add_skill_to_hidden_field_skills =(skill) ->
+define_skill_id =(skill) ->
+  $.ajax("/skills/find_id/", {
+    type: 'GET',
+    dataType: 'json',
+    data: { 'skill': { 'name': skill } },
+    success: (result) ->
+      id = result.id
+      add_skill_to_skills(', ' + skill + '=' + id)
+  })
+
+add_skill_to_skills =(text_skill_data) ->
   skills = $('#skills').val()
-  $('#skills').val(skills + ', ' + skill)
+  $('#skills').val(skills + text_skill_data)
 
 add_button_with_skill_name =(skill_name) ->
   $('#skills-list').append('<span></span>')
-  $('#sample').clone().removeClass('hidden').addClass('removable').attr('id', skill_name)
-  .text(skill_name).appendTo($('#skills-list').children().last())
+  $('#sample').clone().removeClass('hidden').addClass('removable')
+  .attr('id', skill_name).text(skill_name)
+  .appendTo($('#skills-list').children().last())
   
 $ (->
   click_button_add_skill()

@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'vacancies#index'
   resources :vacancies, :employees
   resources :skills, only: :create
+  get 'skills/find_id'
 end

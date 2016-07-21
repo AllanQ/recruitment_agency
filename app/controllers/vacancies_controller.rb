@@ -6,7 +6,6 @@ class VacanciesController < ApplicationController
 
   def new
     @vacancy = Vacancy.new
-    @skill = Skill.new
   end
 
   def create
@@ -18,7 +17,14 @@ class VacanciesController < ApplicationController
 
   private
 
+  def all_params
+    params.require(:vacancy).permit(:title, :salary,
+      :contacts, :validity, :skills)
+  end
+
   def vacancy_params
-    params.require(:vacancy).permit(:title, :salary, :contacts, :validity)
+    hash = all_params.to_h
+    hash.delete(:skills)
+    hash
   end
 end

@@ -15,6 +15,7 @@ gem 'haml-rails', '~> 0.9'
 
 gem 'bootstrap-sass', '~> 3.3.6'
 
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
@@ -28,6 +29,8 @@ group :development do
   gem 'listen', '~> 3.0.5'
 
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'pry'
 end
 
 group :test do

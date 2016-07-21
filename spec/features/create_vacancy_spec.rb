@@ -22,7 +22,6 @@ feature 'create new vacancy' do
     expect(page).not_to have_button('Postgresql')
   end
 
-
   scenario 'with valid data' do
     visit('/')
     click_link('Создать вакансию')
