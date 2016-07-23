@@ -6,11 +6,14 @@ class VacanciesController < ApplicationController
 
   def new
     @vacancy = Vacancy.new
+    @skills = Skill.all
   end
 
   def create
     @vacancy = Vacancy.new(vacancy_params)
+    @vacancy.date = Time.now
     if @vacancy.save
+      Skill.add_skills(@vacancy, all_params)
       redirect_to vacancies_url, notice: 'Вакансия создана'
     end
   end
