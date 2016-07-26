@@ -2,6 +2,8 @@ class Skill < ApplicationRecord
   has_and_belongs_to_many :vacancies
   has_and_belongs_to_many :employees
 
+  validates :name, presence: true
+
   def self.add_skills(vacancy_or_employee, all_params)
     skills = all_params.to_h[:skills][2..-1].split(', ')
     skills.each do |str|
