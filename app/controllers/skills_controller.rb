@@ -16,4 +16,5 @@ class SkillsController < ApplicationController
   def skill_name
     params.require(:skill).permit(:name).to_h[:name]
   end
+
 end

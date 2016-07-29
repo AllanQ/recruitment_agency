@@ -1,6 +1,6 @@
 click_button_add_skill = ->
   $('#add-skill').on('click', ->
-    $('#skill').val().trim().split(',').forEach(add_skill)
+    $('#skill').val().trim().split(/[,/]/).forEach(add_skill)
     $('#skill').val('').focus()
   )
 
@@ -23,6 +23,9 @@ check_presence =(skill) ->
     true
 
 define_skill_id =(skill) ->
+#  id = 0
+#  if $('#edit-vacancy-id').length
+#    id = $('#edit-vacancy-id').val()
   $.ajax("/skills/find_id/", {
     type: 'GET',
     dataType: 'json',
@@ -42,15 +45,17 @@ add_button_with_skill_name =(skill_name) ->
   .attr('id', skill_name).text(skill_name)
   .appendTo($('#skills-list').children().last())
 
-edit_skills =(e_skills) ->
-  $('#skills').val(e_skills)
-  e_skills[2..-1].split(/\=\d+, /).forEach (e_skill) ->
-    add_button_with_skill_name(e_skill)
+#edit_skills = ->
+#  if $('#edit-skills').length
+#    e_skills = $('#edit-skills').val()
+#    if e_skills != null && e_skills != ''
+#      $('#skills').val(e_skills)
+#      i = e_skills.lastIndexOf("=")
+#      e_skills[2...i].split(/\=\d+, /).forEach (e_skill) ->
+#        add_button_with_skill_name(e_skill)
 
 $ (->
-  if $('#edit_skills')
-    e_skills = $('#edit_skills').val
-    if e_skills != null && e_skills != ''
-      edit_skills(e_skills)
+#  edit_skills()
+#  unless $('#edit-skills').length
   click_button_add_skill()
 )

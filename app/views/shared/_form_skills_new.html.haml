@@ -1,0 +1,9 @@
+= label_tag 'skill', 'Умение'
+%span#alert-few-skills.hidden
+  = render 'shared/alert', message: 'Укажите несколько требуемых умений'
+= text_field_tag 'skill', nil, class: 'form-control', id: 'skill',
+  list: 'skill-name', dataindex: '2'
+%datalist#skill-name
+  - Skill.all.each do |skill|
+    %option{ value: "#{skill.name}" }
+= button_tag 'Добавить', type: 'button', class: 'btn btn-info', id: 'add-skill'

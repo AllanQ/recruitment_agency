@@ -1,3 +1,4 @@
-= hidden_field_tag 'edit', value: @skills, id: 'edit_skills'
+= hidden_field_tag 'edit-skills', @skills
 = render 'vacancies/form', title: 'Редактирование вакансии',
-  submit_text: 'Сохранить вакансию', method: :patch
+  submit_text: 'Сохранить вакансию', method: :patch,
+  skills_form: 'shared/form_skills_edit'

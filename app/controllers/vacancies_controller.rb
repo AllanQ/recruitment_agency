@@ -5,10 +5,10 @@ class VacanciesController < ApplicationController
                         .order(created_at: :desc)
                         .page(params[:page])
                         .per(params[:per])
-    # respond_to do |format|
-    #   format.js
-    #   format.html
-    # end
+  end
+
+  def show
+    @vacancy = Vacancy.find(params[:id])
   end
 
   def new
@@ -22,26 +22,31 @@ class VacanciesController < ApplicationController
     if @vacancy.save
       Skill.add_skills(@vacancy, all_params)
       redirect_to vacancies_url, notice: 'Вакансия создана'
+    else
+      render 'new'
     end
-    # respond_to do |format|
-    #   format.js
-    #   format.html
-    # end
-  end
-
-  def show
-    @vacancy = Vacancy.find(params[:id])
   end
 
   def edit
     @vacancy = Vacancy.find(params[:id])
+    @skill = Skill.new
     @skills = @vacancy.skills
       .inject(''){ |skills, skill| "#{skills}, #{skill.name}=#{skill.id}" }
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
-
-
-
+  def update
+    @vacancy = Vacancy.find(params[:id])
+    @vacancy.date = Time.now
+    if @vacancy.update(vacancy_params)
+      redirect_to @vacancy, notice: 'Вакансия обновлена'
+    else
+      render 'edit'
+    end
+  end
 
   private
 
