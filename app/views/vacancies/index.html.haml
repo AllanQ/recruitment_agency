@@ -1,0 +1,12 @@
+%h1.text-center Вакансии
+%br
+.row
+  .col-md-8.col-md-offset-2
+    #vacancies
+      = render 'vacancies/vacancies'
+    %br
+    %br
+    #paginator.text-center
+      = paginate @vacancies,
+       theme: 'twitter-bootstrap-3', pagination_class: 'pagination-md'
+-#remote: true,

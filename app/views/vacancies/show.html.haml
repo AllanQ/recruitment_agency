@@ -1,0 +1,31 @@
+.col-md-4.col-md-offset-4
+  %h2.text-center
+    = @vacancy.title
+    %h5
+      %em
+        .row
+          .text-left.col-md-6
+            = @vacancy.date
+            %small
+              опубликована.
+          .text-right.col-md-6
+            %small
+              Размещена до
+            = @vacancy.date + @vacancy.validity
+    %h4.text-right
+      %em
+        %small
+          Зарплата
+        = @vacancy.salary
+    Умения:
+    %h4
+      %ul
+        - @vacancy.skills.each do |skill|
+          %li
+            = skill.name
+
+    %span
+      Контакты:
+      = @vacancy.contacts
+
+  = link_to 'Редактировать', edit_vacancy_path(@vacancy)

@@ -41,7 +41,16 @@ add_button_with_skill_name =(skill_name) ->
   $('#sample').clone().removeClass('hidden').addClass('removable')
   .attr('id', skill_name).text(skill_name)
   .appendTo($('#skills-list').children().last())
-  
+
+edit_skills =(e_skills) ->
+  $('#skills').val(e_skills)
+  e_skills[2..-1].split(/\=\d+, /).forEach (e_skill) ->
+    add_button_with_skill_name(e_skill)
+
 $ (->
+  if $('#edit_skills')
+    e_skills = $('#edit_skills').val
+    if e_skills != null && e_skills != ''
+      edit_skills(e_skills)
   click_button_add_skill()
 )

@@ -1,0 +1,2 @@
+$('#vacancies').html("#{escape_javascript(render 'vacancies/vacancies')}")
+$('#paginator').html("#{escape_javascript(paginate(@vacancies, remote: true))}")

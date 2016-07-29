@@ -1,7 +1,8 @@
-%h2.text-center Создание вакансии
+%h2.text-center
+  = title
 %br
 %span.col-md-4.col-md-offset-4#inputform
-  = form_for @vacancy, html: { name: 'new_vacancy' } do |f|
+  = form_for @vacancy, method: method, html: { name: 'vacancy' } do |f|
     .form-group
       = f.label :title, 'Название'
       %span#alert-title-empty.hidden
@@ -45,5 +46,5 @@
         = render 'shared/alert', message: 'Срок действия должен быть целым, положительным числом'
       = f.number_field :validity, class: 'form-control', dataindex: '5'
     %br
-    = f.submit 'Создать вакансию', class: 'btn btn-success',
+    = f.submit submit_text, class: 'btn btn-success',
       id: 'submit-vacancy', onsubmit: 'return validate_vacancy()'

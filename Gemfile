@@ -15,12 +15,14 @@ gem 'haml-rails', '~> 0.9'
 
 gem 'bootstrap-sass', '~> 3.3.6'
 
+gem 'kaminari'
 
+gem 'bootstrap-kaminari-views'
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', require: false
   gem 'spring'
   gem 'spring-commands-rspec'
 end

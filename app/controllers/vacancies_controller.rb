@@ -1,7 +1,14 @@
 class VacanciesController < ApplicationController
 
   def index
-
+    @vacancies = Vacancy.all
+                        .order(created_at: :desc)
+                        .page(params[:page])
+                        .per(params[:per])
+    # respond_to do |format|
+    #   format.js
+    #   format.html
+    # end
   end
 
   def new
@@ -16,7 +23,25 @@ class VacanciesController < ApplicationController
       Skill.add_skills(@vacancy, all_params)
       redirect_to vacancies_url, notice: 'Вакансия создана'
     end
+    # respond_to do |format|
+    #   format.js
+    #   format.html
+    # end
   end
+
+  def show
+    @vacancy = Vacancy.find(params[:id])
+  end
+
+  def edit
+    @vacancy = Vacancy.find(params[:id])
+    @skills = @vacancy.skills
+      .inject(''){ |skills, skill| "#{skills}, #{skill.name}=#{skill.id}" }
+  end
+
+
+
+
 
   private
 

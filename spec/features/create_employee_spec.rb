@@ -39,7 +39,10 @@ feature 'create new employee' do
 
     expect(page).to have_content('Работник создан')
     expect.to change(Employee, :count).by(1)
-    expect(Employee.last.contact).to eq('+123(45) 123-45-67')
+    employee = Employee.last
+    expect(employee.contact).to eq('+123(45) 123-45-67')
+    expect(employee.skills.map{ |skill| skill.name })
+      .to eq(['Ruby', 'Ruby on rails'])
   end
 
   context 'with invalid data' do

@@ -1,0 +1,28 @@
+.row
+  - @vacancies.each do |vacancy|
+    .col-md-4
+      %h2
+        = link_to vacancy.title, vacancy_path(vacancy)
+      %h5
+        %em
+          .row
+            .text-left.col-md-6
+              = vacancy.date
+              %small
+                опубликована.
+            .text-right.col-md-6
+              %small
+                Размещена до
+              = vacancy.date + vacancy.validity
+      %h4.text-right
+        %em
+          %small
+            Зарплата
+          = vacancy.salary
+      Умения:
+      %h4
+        %ul
+          %li
+            = vacancy.skills[0].name
+          %li
+            = "#{vacancy.skills[1].name} ..."

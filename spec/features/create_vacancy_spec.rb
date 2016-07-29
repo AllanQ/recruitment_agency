@@ -41,13 +41,8 @@ feature 'create new vacancy' do
     expect.to change(Vacancy, :count).by(1)
     vacancy = Vacancy.last
     expect(vacancy.title).to eq('Ruby developer')
-   # SELECT name FROM (SELECT * FROM skills_vacancies WHERE vacancy_id = 5) AS join_table INNER JOIN skills ON skill_id = id;
-    expect(skills = Skill
-      .joins("JOIN (SELECT * FROM skills_vacancies\
- WHERE vacancy_id = #{vacancy.id}) AS join_table ON id = skill_id")
-      .select(:name)
-      .map{|skill| skill[:name]})
-      .sort.to eq(['Ruby', 'Ruby on rails'])
+    expect(vacancy.skills.map{ |skill| skill.name })
+      .to eq(['Ruby', 'Ruby on rails'])
   end
 
   context 'with invalid data' do
