@@ -9,20 +9,16 @@
         = render 'shared/alert', message: 'Введите название вакансии'
       = f.text_field :title, class: 'form-control', dataindex: '1'
 
-    .form-group.form-inline
-      = render 'shared/form_skills_new'
-      %br
-      %span#skills-list
-        = button_tag 'Sample', type: 'button', id: 'sample',
-          class: 'btn btn-primary glyphicon glyphicon-remove-right hidden'
-    = f.hidden_field :skills, id: 'skills', value: ''
+    = render 'shared/skills', btnid: btnid, skills_list: skills_list
 
+    = f.hidden_field :skills, id: 'skills', value: ''
     .form-group
       = f.label :salary, 'Зарплата'
       %span#alert-salary-empty.hidden
         = render 'shared/alert', message: 'Укажите зарплату'
       %span#alert-salary-invalid.hidden
-        = render 'shared/alert', message: 'Зарплата должна быть целым, положительным числом'
+        = render 'shared/alert',
+          message: 'Зарплата должна быть целым, положительным числом'
       = f.number_field :salary, class: 'form-control', dataindex: '3'
     .form-group
       = f.label :contacts, 'Контактная информация'
@@ -34,7 +30,8 @@
       %span#alert-validity-empty.hidden
         = render 'shared/alert', message: 'Укажите срок действия'
       %span#alert-validity-invalid.hidden
-        = render 'shared/alert', message: 'Срок действия должен быть целым, положительным числом'
+        = render 'shared/alert',
+          message: 'Срок действия должен быть целым, положительным числом'
       = f.number_field :validity, class: 'form-control', dataindex: '5'
     %br
     = f.submit submit_text, class: 'btn btn-success',

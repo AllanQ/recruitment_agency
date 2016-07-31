@@ -4,21 +4,33 @@ class Skill < ApplicationRecord
 
   validates :name, presence: true
 
-  def self.add_skills(vacancy_or_employee, all_params)
+  def self.add_skills_from_new(vacancy_or_employee, all_params)
     skills = all_params.to_h[:skills][2..-1].split(', ')
     skills.each do |str|
       i = str.rindex('=')
-      skill = str[0...i]
+      name = str[0...i]
       id = str[i+1..-1].to_i
-      add_skill(vacancy_or_employee, skill, id)
+      add_skill(vacancy_or_employee, name, id)
     end
+  end
+
+  def self.add_skills_from_edit(vacancy_or_employee, str)
+    skills = []
+    str.strip.split(/[,\/]/).each do |st|
+      name = st.strip.capitalize
+      skill = Skill.find_by(name: name)
+      skill = Skill.create(name: name) unless skill
+      vacancy_or_employee.skills << skill
+      skills << skill
+    end
+    skills
   end
 
   private
 
-  def self.add_skill(vacancy_or_employee, skill, id)
+  def self.add_skill(vacancy_or_employee, name, id)
     if id == 0
-      vacancy_or_employee.skills << Skill.create(name: skill)
+      vacancy_or_employee.skills << Skill.create(name: name)
     else
       vacancy_or_employee.skills << Skill.find(id)
     end

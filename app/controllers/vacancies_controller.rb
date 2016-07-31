@@ -20,7 +20,7 @@ class VacanciesController < ApplicationController
     @vacancy = Vacancy.new(vacancy_params)
     @vacancy.date = Time.now
     if @vacancy.save
-      Skill.add_skills(@vacancy, all_params)
+      Skill.add_skills_from_new(@vacancy, all_params)
       redirect_to vacancies_url, notice: 'Вакансия создана'
     else
       render 'new'
@@ -31,11 +31,14 @@ class VacanciesController < ApplicationController
     @vacancy = Vacancy.find(params[:id])
     @skill = Skill.new
     @skills = @vacancy.skills
-      .inject(''){ |skills, skill| "#{skills}, #{skill.name}=#{skill.id}" }
     respond_to do |format|
-      format.js
       format.html
+      format.js
     end
+  end
+
+  def remove_skill
+
   end
 
   def update
