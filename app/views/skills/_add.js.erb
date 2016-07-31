@@ -1,0 +1,8 @@
+console.log('js!!!!!!!!!!!');
+//$('#some-form').html("%= j (render 'vacancies/some_form')%>");
+
+
+
+<% @skills.each do |skill| %>
+  $('#skills-list').html("<%= j (render 'shared/skill_button', skillname: skill.name, skillid: skill.id) %>");
+<% end %>

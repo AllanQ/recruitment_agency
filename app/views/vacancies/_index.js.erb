@@ -1,0 +1,2 @@
+$('#vacancies').html("<%= j (render 'vacancies/vacancies') %>");
+$('#paginator').html("<%= j (paginate(@vacancies, remote: true)) %>");

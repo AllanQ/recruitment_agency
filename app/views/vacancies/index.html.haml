@@ -7,6 +7,5 @@
     %br
     %br
     #paginator.text-center
-      = paginate @vacancies,
+      = paginate @vacancies, remote: true,
        theme: 'twitter-bootstrap-3', pagination_class: 'pagination-md'
--#remote: true,

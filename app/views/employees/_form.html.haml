@@ -1,0 +1,36 @@
+%h2.text-center
+  = title
+%br
+%span.col-md-4.col-md-offset-4#inputform
+  = form_for @employee do |f|
+    .form-group
+      = f.label :name, 'ФИО'
+      %span#alert-name-empty.hidden
+        = render 'shared/alert', message: 'Укажите ФИО'
+      %span#alert-name-invalid.hidden
+        = render 'shared/alert', message: 'ФИО должно содержать 3 слова и только кириллические буквы и пробелы'
+      = f.text_field :name, class: 'form-control', dataindex: '1'
+
+    = render 'shared/skills', btnid: btnid, skills_list: skills_list
+
+    = f.hidden_field :skills, id: 'skills', value: ''
+    .form-group
+      = f.label :salary, 'Желаемая зарплата'
+      %span#alert-salary-empty.hidden
+        = render 'shared/alert', message: 'Укажите желаемую зарплату'
+      %span#alert-salary-invalid.hidden
+        = render 'shared/alert', message: 'Зарплата должна быть целым, положительным числом'
+      = f.number_field :salary, class: 'form-control', dataindex: '3'
+    .form-group
+      = f.label :contact, 'Номер телефона или адрес эл.почты'
+      %span#alert-contact-empty.hidden
+        = render 'shared/alert', message: 'Укажите номер телефона или адрес эл.почты'
+      %span#alert-contact-invalid.hidden
+        = render 'shared/alert', message: 'Проверьте номер телефона или адрес эл.почты. Необходимо указать что-то одно: либо номер телефона, либо адрес эл.почты'
+      = f.text_field :contact, class: 'form-control', dataindex: '4'
+    .checkbox
+      = f.check_box :search, dataindex: '5'
+      = f.label :search, 'В поиске работы'
+    %br
+    = f.submit submit_text, class: 'btn btn-success',
+      id: 'submit-employee', onsubmit: 'return validate_employee()'

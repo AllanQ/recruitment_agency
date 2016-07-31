@@ -9,5 +9,5 @@ RSpec.describe Employee, type: :model do
     it { should validate_presence_of(:contact) }
     it { should validate_presence_of(:search) }
     it { should validate_presence_of(:salary) }
-  end
+    end
 end

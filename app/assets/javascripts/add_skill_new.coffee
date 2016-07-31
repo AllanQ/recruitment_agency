@@ -1,5 +1,5 @@
-click_button_add_skill = ->
-  $('#add-skill').on('click', ->
+click_button_add_skill_new = ->
+  $('#add-skill-new').on('click', ->
     $('#skill').val().trim().split(/[,/]/).forEach(add_skill)
     $('#skill').val('').focus()
   )
@@ -43,5 +43,5 @@ add_button_with_skill_name =(skill_name) ->
   .appendTo($('#skills-list').children().last())
 
 $ (->
-  click_button_add_skill()
+  click_button_add_skill_new()
 )

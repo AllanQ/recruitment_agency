@@ -3,5 +3,4 @@ class Employee < ApplicationRecord
 
   validates :name, :contact, :search, :salary, presence: true
 
-
 end

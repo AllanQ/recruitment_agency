@@ -1,10 +1,8 @@
 class VacanciesController < ApplicationController
 
   def index
-    @vacancies = Vacancy.all
-                        .order(created_at: :desc)
-                        .page(params[:page])
-                        .per(params[:per])
+    @vacancies = Vacancy.all.order(created_at: :desc).page(params[:page])
+      .per(params[:per])
   end
 
   def show
@@ -21,7 +19,7 @@ class VacanciesController < ApplicationController
     @vacancy.date = Time.now
     if @vacancy.save
       Skill.add_skills_from_new(@vacancy, all_params)
-      redirect_to vacancies_url, notice: 'Вакансия создана'
+      redirect_to vacancies_path, notice: 'Вакансия создана'
     else
       render 'new'
     end
@@ -31,14 +29,6 @@ class VacanciesController < ApplicationController
     @vacancy = Vacancy.find(params[:id])
     @skill = Skill.new
     @skills = @vacancy.skills
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
-
-  def remove_skill
-
   end
 
   def update
@@ -51,11 +41,14 @@ class VacanciesController < ApplicationController
     end
   end
 
+  def destroy
+  end
+
   private
 
   def all_params
-    params.require(:vacancy).permit(:title, :salary,
-      :contacts, :validity, :skills)
+    params.require(:vacancy).permit(:title, :salary, :contacts, :validity,
+      :skills)
   end
 
   def vacancy_params

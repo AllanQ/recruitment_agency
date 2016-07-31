@@ -3,15 +3,14 @@
   %span#alert-few-skills.hidden
     = render 'shared/alert', message: 'Укажите несколько требуемых умений'
   = text_field_tag 'skill', nil, class: 'form-control', id: 'skill',
-      list: 'skill-name', dataindex: '2'
+    list: 'skill-name', dataindex: '2'
   %datalist#skill-name
     - Skill.all.each do |skill|
       %option{ value: "#{skill.name}" }
-  = button_tag 'Добавить', type: 'button', class: 'btn btn-info',
-      id: btnid
-  = link_to 'Добавить!!!!!!',
-    skills_path,
-    method: :post, class: 'btn btn-info', remote: true
+  = button_tag 'Добавить', type: 'button', class: 'btn btn-info', id: btnid
+  -#= link_to 'Добавить!!!!!!',
+  -#  skills_path,
+  -#  method: :post, class: 'btn btn-info', remote: true
   %span#some-form
   %br
   %span#skills-list
